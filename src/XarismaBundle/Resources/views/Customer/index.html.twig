@@ -1,0 +1,30 @@
+{% extends 'XarismaBundle:Default:base.html.twig' %}
+
+{% block body -%}
+    <h1>Customer List</h1>
+
+    <table class="records_list table table-hover">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Cust #</th>
+                <th>Repname</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('customer_show', { 'id': entity.id }) }}">{{ entity.accountname }}</a></td>
+                <td>{{ entity.customernumber }}</td>
+                <td>{% if entity.repname %}
+                        {{ entity.repname }}
+                        {% else %}
+                            N/A
+                        {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% endblock %}

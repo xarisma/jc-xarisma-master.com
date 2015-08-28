@@ -1,0 +1,34 @@
+fileops:
+    path:     /
+    defaults: { _controller: "XarismaBundle:Fileops:index" }
+
+fileops_show:
+    path:     /{id}/show
+    defaults: { _controller: "XarismaBundle:Fileops:show" }
+
+fileops_newimport:
+    path:     /newimport
+    defaults: { _controller: "XarismaBundle:Fileops:newimport" }
+
+fileops_newexport:
+    path:     /newexport
+    defaults: { _controller: "XarismaBundle:Fileops:newexport" }
+
+fileops_create:
+    path:     /create
+    defaults: { _controller: "XarismaBundle:Fileops:create" }
+    methods:  POST
+
+fileops_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "XarismaBundle:Fileops:edit" }
+
+fileops_update:
+    path:     /{id}/update
+    defaults: { _controller: "XarismaBundle:Fileops:update" }
+    methods:  [POST, PUT]
+
+fileops_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "XarismaBundle:Fileops:delete" }
+    methods:  [POST, DELETE]

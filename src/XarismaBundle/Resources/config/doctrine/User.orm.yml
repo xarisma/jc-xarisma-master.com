@@ -1,0 +1,55 @@
+XarismaBundle\Entity\User:
+    type: entity
+    table: fos_user
+    
+    repositoryClass: XarismaBundle\Entity\UserRepository
+    
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: AUTO
+                
+    fields:
+
+        firstname:
+            type: string
+            nullable: true
+            length: 45
+            fixed: false
+            comment: ''
+            column: firstName
+        lastname:
+            type: string
+            nullable: true
+            length: 45
+            fixed: false
+            comment: ''
+            column: lastName
+        updateby:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: updateBy
+        datecreated:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: dateCreated
+        dateupdated:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: dateUpdated
+        deleted:
+            type: integer
+            nullable: ytur
+            unsigned: false
+            default: false
+            comment: 'Set to true for soft delete'
+    lifecycleCallbacks: {  }

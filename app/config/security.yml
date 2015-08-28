@@ -1,0 +1,40 @@
+# app/config/security.yml
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_USER :       ROLE_USER
+        ROLE_ADMIN_ADMIN: ROLE_ADMIN
+        ROLE_SUPER_ADMIN: ROLE_SYSTEM
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_provider: security.csrf.token_manager # Use form.csrf_provider instead for Symfony <2.4
+                login_path: /user/login
+                use_forward: false
+                check_path: /user/login_check
+                failure_path: false
+
+            logout:       true
+            anonymous:    true
+            remember_me:
+                  key:      mySuperDuperKey
+                  lifetime: 4147200
+                  path:     /
+                  domain:   ~
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/customer/, role: ROLE_ADMIN }
+        - { path: ^/order/, role: ROLE_ADMIN }
+        - { path: ^/admin/, role: ROLE_ADMIN }

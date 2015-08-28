@@ -1,0 +1,91 @@
+XarismaBundle\Entity\Custorder:
+    type: entity
+    table: custorder
+    repositoryClass: XarismaBundle\Entity\CustorderRepository
+    
+    indexes:
+        IDX_196FD7DF9395C3F3:
+            columns:
+                - customer_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    lifecycleCallbacks:
+        prePersist: [ doPrePersist ]
+        preUpdate: [ doPreUpdate ]                
+                
+    fields:
+        ordernumber:
+            type: string
+            nullable: false
+            length: 8
+            fixed: false
+            comment: ''
+            column: orderNumber
+        orderdate:
+            type: datetime
+            nullable: true
+            comment: ''
+        orderstatus:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: orderStatus
+        notes:
+            type: string
+            nullable: true
+            length: 3000
+            fixed: false
+            comment: ''
+        updateby:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: updateBy
+            
+        needsexport:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: 'Flag indicating that records updated and needs export'
+            column: needsExport
+        dateexported:
+            type: datetime
+            nullable: true
+            comment: 'Date and time this record was last exported'
+            column: dateExported
+        datecreated:
+            type: datetime
+            nullable: true
+            comment: 'Date and time this record was created'
+            column: dateCreated
+        dateupdated:
+            type: datetime
+            nullable: true
+            comment: 'Date and time this record was last updated'
+            column: dateUpdated
+        deleted:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: Deleted
+    manyToOne:
+        customer:
+            targetEntity: Customer
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                customer_id:
+                    referencedColumnName: id
+            orphanRemoval: false

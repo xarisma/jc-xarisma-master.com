@@ -1,0 +1,66 @@
+{% extends 'XarismaBundle:Default:base.html.twig' %}
+
+{% block body -%}
+    <h1>Import/Export Job History</h1>
+    <hr />
+    <table class="records_list table">
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+                <th colspan='2'><center>Customer</center></th>
+                <th colspan='2'><center>Order</center></th>
+            </tr>
+            <tr>
+                <th>Action</th>
+                <th>Event&nbsp;Time</th>
+                <th>Filename</th>
+                <th>Result</th>
+                <th>Recs</th>
+                <th>Errors</th>
+                <th>New</th>
+                <th>Update</th>
+                <th>New</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            {% if entity.eventTime %}
+                {% set eventTime=entity.eventTime|date('M-d H:i') %}
+            {% else %}
+                {% set eventTime='Unknown' %}
+            {% endif %}
+            <tr>
+                <td>{{ entity.action }}</td>
+                <td><a href="{{ path('fileops_show', { 'id': entity.id }) }}">{{ eventTime }}</a></td>
+                <td>{{ entity.filename|split('/')|last}}</td>
+                <td>{{ entity.status }}</td>
+                <td>{{ entity.recs }}</td>
+                <td>{{ entity.errors }}</td>
+                <td>{{ entity.customerNew }}</td>
+                <td>{{ entity.customerUpdate }}</td>
+                <td>{{ entity.orderNew }}</td>
+                <td>{{ entity.orderUpdate }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fileops_newimport') }}">
+                Import File
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('fileops_newexport') }}">
+                Export File
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

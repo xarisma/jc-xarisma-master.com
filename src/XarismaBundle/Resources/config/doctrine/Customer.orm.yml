@@ -1,0 +1,53 @@
+XarismaBundle\Entity\Customer:
+    type: entity
+    table: customer
+    repositoryClass: XarismaBundle\Entity\CustomerRepository
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        customernumber:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            comment: ''
+            column: customerNumber
+        accountname:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            comment: ''
+            column: accountName
+        repname:
+            type: string
+            nullable: true
+            length: 40
+            fixed: false
+            comment: ''
+            column: repName
+        datecreated:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: dateCreated
+        dateupdated:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: dateUpdated
+        deleted:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: Deleted
+    lifecycleCallbacks: {  }
